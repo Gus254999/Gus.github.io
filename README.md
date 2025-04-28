@@ -1,232 +1,187 @@
+# ระบบลงทะเบียนนักศึกษา (Student Registration System)
 
-# 🎓 ระบบลงทะเบียนนักศึกษา (Student Registration System)
-
-![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)
-![License](https://img.shields.io/badge/license-MIT-green.svg)
-
-## 📋 สารบัญ
-- [📌 ภาพรวมโครงการ](#-ภาพรวมโครงการ)
-- [✨ คุณสมบัติหลัก](#-คุณสมบัติหลัก)
-- [🛠 เทคโนโลยีที่ใช้](#-เทคโนโลยีที่ใช้)
-- [📦 ความต้องการของระบบ](#-ความต้องการของระบบ)
-- [🚀 การติดตั้งและใช้งาน (Step-by-step)](#-การติดตั้งและใช้งาน-step-by-step)
-- [📁 โครงสร้างโปรเจกต์](#-โครงสร้างโปรเจกต์)
-- [📑 คำอธิบายโค้ดหลัก (สำคัญ)](#-คำอธิบายโค้ดหลัก-สำคัญ)
-- [💡 อธิบายเทมเพลต HTML ทั้งหมด](#-อธิบายเทมเพลต-html-ทั้งหมด)
-- [🔧 Dev Tools แนะนำสำหรับพัฒนา](#-dev-tools-แนะนำสำหรับพัฒนา)
-- [🎯 ตัวอย่างการใช้งานจริง (Use Case)](#-ตัวอย่างการใช้งานจริง-use-case)
-- [🧩 การปรับแต่งและขยาย](#-การปรับแต่งและขยาย)
-- [🚧 การดูแลรักษาและการสนับสนุน](#-การดูแลรักษาและการสนับสนุน)
-- [🤝 การมีส่วนร่วมในโครงการ](#-การมีส่วนร่วมในโครงการ)
-- [📄 ใบอนุญาต](#-ใบอนุญาต)
-- [📞 ติดต่อ](#-ติดต่อ)
+![Version](https://img.shields.io/badge/version-1.0.0-blue)
+![Django](https://img.shields.io/badge/Django-4.x-green)
+![License](https://img.shields.io/badge/license-MIT-lightgrey)
 
 ---
 
-## 📌 ภาพรวมโครงการ
-ระบบนี้พัฒนาเพื่อให้การจัดการข้อมูลนักศึกษาในสถานศึกษาเป็นไปอย่างสะดวกผ่านเว็บแอปพลิเคชัน  
-สามารถลงทะเบียน, อัปโหลดรูป, ค้นหา, แก้ไข และลบนักศึกษาได้
+## 📦 ภาพรวมระบบ
 
-## ตัวอย่างหน้าเว็ปไซต์
-<img src="https://raw.githubusercontent.com/ชื่อผู้ใช้/ชื่อโปรเจกต์/branch/images/website_preview.png" width="600">
-
-
----
-
-## ✨ คุณสมบัติหลัก
-- ระบบ CRUD (Create, Read, Update, Delete)
-- ฟอร์มรับข้อมูลแบบทันสมัย
-- รองรับการอัปโหลดรูปภาพและแสดงภาพ
-- ระบบค้นหาแบบ partial matching
-- ใช้ Bootstrap 5 UI/UX
+เว็บแอปพลิเคชันจัดการข้อมูลนักศึกษาด้วย Django Framework ประกอบด้วยความสามารถในการ:
+- เพิ่ม/แก้ไข/ลบ/แสดงรายชื่อนักศึกษา
+- รองรับการอัปโหลดรูปภาพนักศึกษา
+- UI ใช้งานง่ายด้วย Bootstrap 5
+- รองรับการ Deploy จริงผ่าน Render
 
 ---
 
 ## 🛠 เทคโนโลยีที่ใช้
-- Django 4.x (Python Web Framework)
-- SQLite3 (ฐานข้อมูลในตัว)
-- Bootstrap 5 (ออกแบบหน้าเว็บ)
-- HTML5, CSS3, JavaScript (พื้นฐาน)
-- VS Code / GitHub (แนะนำ)
+
+- Python 3.10+
+- Django 4.x
+- SQLite3 (ฐานข้อมูล)
+- Bootstrap 5
+- HTML5/CSS3/JavaScript
+- Gunicorn (production)
 
 ---
 
-## 📦 ความต้องการของระบบ
-- Python >= 3.10
-- Django >= 4.2
-- pip (Python package manager)
-- ระบบปฏิบัติการ: Windows / macOS / Linux
+## 🚀 ขั้นตอนการติดตั้ง (Local)
 
----
+### 1. Clone โปรเจกต์
 
-## 🚀 การติดตั้งและใช้งาน (Step-by-step)
-
-### 1. ดาวน์โหลดหรือโคลนโปรเจกต์
 ```bash
-git clone https://github.com/yourusername/student_register.git
+git clone <REPO_URL>
 cd student_register
 ```
 
-### 2. สร้าง virtual environment
+### 2. สร้าง Virtual Environment
+
 ```bash
 python -m venv venv
-venv\Scripts\activate  # Windows
-# หรือ
-source venv/bin/activate  # Mac/Linux
+venv\Scripts\activate      # Windows
+source venv/bin/activate     # macOS/Linux
 ```
 
-### 3. ติดตั้ง Django
+### 3. ติดตั้ง Dependencies
+
 ```bash
-pip install django
+pip install -r requirements.txt
 ```
 
-### 4. รัน migration และ server
+### 4. Migrate ฐานข้อมูล และสร้าง superuser
+
 ```bash
 python manage.py migrate
+python manage.py createsuperuser
+```
+
+### 5. รันเซิร์ฟเวอร์
+
+```bash
 python manage.py runserver
 ```
 
 ---
 
-## 📁 โครงสร้างโปรเจกต์
-```plaintext
+## 🔍 โครงสร้างโปรเจกต์
+
+```
 student_register/
 ├── manage.py
-├── db.sqlite3
-├── student_register/
+├── requirements.txt
+├── Procfile
+├── .env
+├── student_register/        # Django Project
 │   ├── settings.py
 │   ├── urls.py
-│   └── ...
-├── students/
+│   └── wsgi.py
+├── students/                # App หลัก
 │   ├── models.py
 │   ├── views.py
-│   ├── forms.py
 │   ├── urls.py
+│   ├── forms.py
+│   └── migrations/
 ├── templates/
-│   ├── base.html
-│   ├── student_form.html
-│   └── student_list.html
-└── media/
-    └── student_images/
+│   └── students/
+│       ├── student_form.html
+│       ├── student_list.html
+│       └── student_confirm_delete.html
 ```
 
 ---
 
-## 📑 คำอธิบายโค้ดหลัก (สำคัญ)
+## 🧠 อธิบายโค้ดสำคัญ
 
-### `models.py`
+### 📁 `models.py`
+
 ```python
 class Student(models.Model):
+    student_id = models.CharField(max_length=20)
     name = models.CharField(max_length=100)
     email = models.EmailField()
-    image = models.ImageField(upload_to='student_images/')
+    phone = models.CharField(max_length=15)
+    image = models.ImageField(upload_to='student_images/', blank=True)
 ```
-- ใช้สร้างตารางข้อมูลนักศึกษาในฐานข้อมูล
-- `image` จะถูกเก็บไว้ในโฟลเดอร์ `media/student_images`
+
+📌 สร้างตาราง `Student` เก็บข้อมูลนักศึกษา พร้อมรองรับรูปภาพ
 
 ---
 
-### `forms.py`
+### 📁 `forms.py`
+
 ```python
 class StudentForm(forms.ModelForm):
     class Meta:
         model = Student
-        fields = ['name', 'email', 'image']
+        fields = '__all__'
 ```
-- ฟอร์มสำหรับรับค่าจากผู้ใช้ในหน้าเว็บ
-- ผูกกับ Model โดยอัตโนมัติ
+
+📌 ฟอร์ม Django อิงจาก Model สำหรับเพิ่ม/แก้ไขข้อมูล
 
 ---
 
-### `views.py`
-```python
-def student_list(request):
-    query = request.GET.get('q')
-    students = Student.objects.filter(name__icontains=query) if query else Student.objects.all()
-    return render(request, 'student_list.html', {'students': students})
-```
-- แสดงรายการนักศึกษาทั้งหมด
-- รองรับการค้นหาชื่อ
+### 📁 `views.py`
+
+ฟังก์ชันหลัก:
+- `student_list`: แสดงรายการนักศึกษา
+- `student_create`: เพิ่มข้อมูล
+- `student_update`: แก้ไข
+- `student_delete`: ลบ
 
 ---
 
-### `urls.py`
+### 📁 `urls.py`
+
 ```python
 urlpatterns = [
-    path('', views.student_list, name='student_list'),
-    path('add/', views.student_create, name='student_create'),
-    ...
+    path('', student_list, name='student_list'),
+    path('create/', student_create, name='student_create'),
+    path('update/<int:pk>/', student_update, name='student_update'),
+    path('delete/<int:pk>/', student_delete, name='student_delete'),
 ]
 ```
-- กำหนด route สำหรับหน้าเว็บต่าง ๆ
+
+📌 กำหนดเส้นทางเข้าถึงแต่ละฟังก์ชันของ views
 
 ---
 
-## 💡 อธิบายเทมเพลต HTML ทั้งหมด
+## 🖼️ Templates (HTML)
 
-### `base.html`
-- โครงหน้าเว็บหลักที่หน้าอื่น ๆ จะสืบทอด
-- มี Navbar และส่วน `block content` สำหรับใส่เนื้อหาจากแต่ละหน้า
+### ✅ `student_list.html`
+- แสดงตารางรายชื่อนักศึกษา
+- มีปุ่ม "แก้ไข" และ "ลบ"
+- ใช้ Bootstrap table และปุ่มสีสัน
 
-### `student_form.html`
-- ฟอร์ม HTML สำหรับกรอกข้อมูลนักศึกษา
-- ใช้ Bootstrap ทำให้ UI สวยงาม
+### ✅ `student_form.html`
+- ฟอร์มกรอกข้อมูลนักศึกษา
+- รองรับการอัปโหลดรูป
 
-### `student_list.html`
-- แสดงตารางข้อมูลนักศึกษา
-- มีช่องค้นหา และปุ่มแก้ไข/ลบ
-
----
-
-## 🔧 Dev Tools แนะนำสำหรับพัฒนา
-- ✅ [VS Code](https://code.visualstudio.com/)
-- ✅ [GitHub Desktop](https://desktop.github.com/)
-- ✅ [Postman](https://www.postman.com/) (หากขยายไปใช้ API)
-- ✅ [SQLite Browser](https://sqlitebrowser.org/) (ดูฐานข้อมูล)
+### ✅ `student_confirm_delete.html`
+- ยืนยันการลบ
 
 ---
 
-## 🎯 ตัวอย่างการใช้งานจริง (Use Case)
-- โครงการนักศึกษา
-- เว็บระบบหลังบ้านโรงเรียน
-- ระบบรับสมัครนักศึกษาใหม่
-- ใช้ฝึกงานด้าน Django/Full Stack
+## 🌐 การ Deploy บน Render
+
+1. เชื่อม GitHub repo เข้ากับ [https://render.com](https://render.com)
+2. ตั้งค่า:
+   - Build Command: `pip install -r requirements.txt`
+   - Start Command: `gunicorn student_register.wsgi`
+   - Root Directory: *(เว้นว่าง)*
+
+3. Render จะออนไลน์เว็บให้อัตโนมัติ!
 
 ---
 
-## 🧩 การปรับแต่งและขยาย
-- เพิ่มระบบ login/logout
-- ใช้ PostgreSQL แทน SQLite
-- อัปเกรด Bootstrap เป็นเวอร์ชันล่าสุด
-- เพิ่ม pagination, export PDF หรือ Excel
+## 📄 License
+
+เผยแพร่ภายใต้ MIT License – ใช้เพื่อการศึกษา/พัฒนาต่อได้อย่างอิสระ
 
 ---
 
-## 🚧 การดูแลรักษาและการสนับสนุน
-- อัปเดต Django เวอร์ชันล่าสุดเสมอ
-- สำรองฐานข้อมูลหากใช้งานจริง
-- ปรับปรุง UI ให้เหมาะกับมือถือ (responsive)
+## 🙋‍♂️ ผู้พัฒนา
 
----
-
-## 🤝 การมีส่วนร่วมในโครงการ
-- Fork Repo และสร้าง Branch ของคุณเอง
-- Pull Request ยินดีต้อนรับ!
-- เปิด Issue หากพบปัญหา
-
----
-
-## 📄 ใบอนุญาต
-เผยแพร่ภายใต้ MIT License – นำไปใช้ต่อ/ดัดแปลงได้
-
----
-
-## 📞 ติดต่อ
-ผู้พัฒนา: 
-- วงศกร หวลมานพ
-- อกฤษณ์ นารัง
-- สิรฐากร กาญจนเสถียร
-  
----   
-
-GitHub: [https://github.com/akrit](https://github.com/akrit)
+**อกฤษณ์ นารัง**  
+GitHub: [https://github.com/gus](https://github.com/gus)
